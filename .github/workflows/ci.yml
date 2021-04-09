@@ -32,24 +32,24 @@ jobs:
         cmake .. -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DPLATFORM=$PLATFORM
         make
 
-  build_macos:
-    runs-on: macos-11.0
+  # build_macos:
+  #   runs-on: macos-11.0
 
-    steps:
-    - uses: actions/checkout@v2
+  #   steps:
+  #   - uses: actions/checkout@v2
 
-    - name: Set Up Build Environment
-      working-directory: ${{github.workspace}}/src/unetbootin
-      shell: bash
-      run: |
-        brew search qt5
-        brew install qt5
-        # sudo apt-get install -y build-essential cmake qtbase5-dev qttools5-dev
-        mkdir -p build_tmp
+  #   - name: Set Up Build Environment
+  #     working-directory: ${{github.workspace}}/src/unetbootin
+  #     shell: bash
+  #     run: |
+  #       brew search qt5
+  #       brew install qt5
+  #       # sudo apt-get install -y build-essential cmake qtbase5-dev qttools5-dev
+  #       mkdir -p build_tmp
 
-    - name: Build UNetbootin
-      working-directory: ${{github.workspace}}/src/unetbootin/build_tmp
-      shell: bash
-      run: |
-        cmake .. -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DPLATFORM=$PLATFORM
-        make
+  #   - name: Build UNetbootin
+  #     working-directory: ${{github.workspace}}/src/unetbootin/build_tmp
+  #     shell: bash
+  #     run: |
+  #       cmake .. -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DPLATFORM=$PLATFORM
+  #       make
