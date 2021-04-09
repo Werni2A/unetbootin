@@ -9,7 +9,11 @@ env:
 
 jobs:
   build_ubuntu:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os-version: [16.04, 18.04, 20.04, 20.10]
+
+    runs-on: ubuntu-${{matrix.os-version}}
 
     steps:
     - uses: actions/checkout@v2
