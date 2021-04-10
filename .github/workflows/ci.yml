@@ -54,12 +54,9 @@ jobs:
         host: 'windows'
         target: 'desktop'
         arch: 'win64_msvc2017_64'
-        dir: '${{ github.workspace }}/example/'
         install-deps: 'true'
-        modules: 'qtcharts qtwebengine'
         cached: 'false'
         setup-python: 'false'
-        tools: 'tools_ifw,4.0,qt.tools.ifw.40 tools_qtcreator,4.13.2-0,qt.tools.qtcreator'
         set-env: 'false'
         tools-only: 'false'
 
