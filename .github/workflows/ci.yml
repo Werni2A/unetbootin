@@ -43,13 +43,25 @@ jobs:
       working-directory: ${{github.workspace}}/src/unetbootin
       shell: cmd
       run: |
-        choco install cmake.install --version=3.10.2
-        choco install mingw --version=4.8.5
+        # choco install cmake.install
+        # choco install mingw
         mkdir build_tmp
+
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v2
+      with:
+        version: '5.15.2'
+        host: 'windows'
+        target: 'desktop'
+        arch: 'win64_msvc2017_64'
+        install-deps: 'true'
+        tools: 'tools_ifw,4.0,qt.tools.ifw.40 tools_qtcreator,4.13.2-0,qt.tools.qtcreator'
+        set-env: 'false'
+        tools-only: 'false'
 
     - name: Build UNetbootin
       working-directory: ${{github.workspace}}/src/unetbootin/build_tmp
       shell: cmd
       run: |
         cmake -G "MinGW Makefiles" .. -DCMAKE_BUILD_TYPE=$BUILD_TYPE
-        mingwmake
+        mingw-make
