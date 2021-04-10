@@ -41,10 +41,13 @@ jobs:
 
     - name: Set Up Build Environment
       working-directory: ${{github.workspace}}/src/unetbootin
-      shell: bash
+      shell: powershell
       run: |
-        sudo apt-get install -y build-essential cmake qtbase5-dev qttools5-dev
-        mkdir -p build_tmp
+        Set-ExecutionPolicy Bypass -Scope Process -Force; `
+        iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+        choco install mingw --version=4.8.5
+        # sudo apt-get install -y build-essential cmake qtbase5-dev qttools5-dev
+        # mkdir -p build_tmp
 
     - name: Build UNetbootin
       working-directory: ${{github.workspace}}/src/unetbootin/build_tmp
