@@ -41,7 +41,7 @@ jobs:
 
     - name: Set Up Build Environment
       working-directory: ${{github.workspace}}/src/unetbootin
-      shell: powershell
+      shell: cmd
       run: |
         choco install mingw
         choco install cmake.install
