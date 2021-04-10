@@ -51,14 +51,10 @@ jobs:
       uses: jurplel/install-qt-action@v2
       with:
         version: '5.15.2'
-        host: 'windows'
-        target: 'desktop'
-        arch: 'win64_msvc2017_64'
+        arch: 'win64_mingw73'
         install-deps: 'true'
-        cached: 'false'
         setup-python: 'false'
-        set-env: 'false'
-        tools-only: 'false'
+
 
 
     - name: Build UNetbootin
@@ -66,4 +62,4 @@ jobs:
       shell: cmd
       run: |
         cmake -G "MinGW Makefiles" .. -DCMAKE_BUILD_TYPE=$BUILD_TYPE
-        mingw-make
+        mingw-make /version
