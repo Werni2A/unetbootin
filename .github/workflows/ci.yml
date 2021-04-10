@@ -36,37 +36,20 @@ jobs:
   build_windows:
     runs-on: windows-latest
 
+    defaults:
+      run:
+        shell: msys2 {0}
+
     steps:
-    - uses: actions/checkout@v2
-
-    - name: Check version
-      working-directory: ${{github.workspace}}/src/unetbootin/build_tmp
-      shell: cmd
-      run: |
-        gcc --version
-        mingw-make /version
-
-    - name: Set Up Build Environment
-      working-directory: ${{github.workspace}}/src/unetbootin
-      shell: cmd
-      run: |
-        # choco install cmake.install
-        # choco install mingw
-        mkdir build_tmp
-
-    - name: Install Qt
-      uses: jurplel/install-qt-action@v2
-      with:
-        version: '5.15.2'
-        arch: 'win64_mingw81'
-        install-deps: 'true'
-        setup-python: 'false'
-
-
-
-    - name: Build UNetbootin
-      working-directory: ${{github.workspace}}/src/unetbootin/build_tmp
-      shell: cmd
-      run: |
-        cmake -G "MinGW Makefiles" .. -DCMAKE_BUILD_TYPE=$BUILD_TYPE
-        mingw-make /version
+      - uses: actions/checkout@v2
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: git mingw-w64-x86_64-toolchain
+      - name: CI-Build
+        run: |
+          echo 'Running in MSYS2!'
+          mkdir build_tmp
+          cmake -G "MSYS Makefiles" .. -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+          cmake --build .
