@@ -43,8 +43,8 @@ jobs:
       working-directory: ${{github.workspace}}/src/unetbootin
       shell: cmd
       run: |
-        choco install mingw
-        choco install cmake.install
+        choco install cmake.install --version=3.10.2
+        choco install mingw --version=4.8.5
         mkdir build_tmp
 
     - name: Build UNetbootin
