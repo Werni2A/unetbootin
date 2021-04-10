@@ -43,15 +43,15 @@ jobs:
       working-directory: ${{github.workspace}}/src/unetbootin
       shell: powershell
       run: |
-        Set-ExecutionPolicy Bypass -Scope Process -Force; `
-        iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+        # Set-ExecutionPolicy Bypass -Scope Process -Force; `
+        # iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
         choco install mingw --version=4.8.5
         # sudo apt-get install -y build-essential cmake qtbase5-dev qttools5-dev
-        # mkdir -p build_tmp
+        mkdir -p build_tmp
 
     - name: Build UNetbootin
       working-directory: ${{github.workspace}}/src/unetbootin/build_tmp
-      shell: bash
+      shell: cmd
       run: |
-        cmake .. -DCMAKE_BUILD_TYPE=$BUILD_TYPE
-        nmake
+        cmake -G "MinGW Makefiles" .. -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+        mingwmake
