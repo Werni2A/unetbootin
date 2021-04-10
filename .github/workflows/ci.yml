@@ -8,13 +8,33 @@ env:
   PLATFORM: EEEUBUNTU # FIXME: This is just a placeholder. CMake does not respect this kind of defines yet
 
 jobs:
-  build_ubuntu:
-    runs-on: ${{matrix.os}}
+  # build_ubuntu:
+  #   runs-on: ${{matrix.os}}
 
-    strategy:
-      matrix:
-        os: [ubuntu-18.04, ubuntu-20.04]
-        platform: [AUTOSUPERGRUBDISK, EEEPCLOS, EEEUBUNTU, ELIVE, GNEWSENSE, KIWILINUX, NIMBLEX, SLITAZ, XPUD]
+  #   strategy:
+  #     matrix:
+  #       os: [ubuntu-18.04, ubuntu-20.04]
+  #       platform: [AUTOSUPERGRUBDISK, EEEPCLOS, EEEUBUNTU, ELIVE, GNEWSENSE, KIWILINUX, NIMBLEX, SLITAZ, XPUD]
+
+  #   steps:
+  #   - uses: actions/checkout@v2
+
+  #   - name: Set Up Build Environment
+  #     working-directory: ${{github.workspace}}/src/unetbootin
+  #     shell: bash
+  #     run: |
+  #       sudo apt-get install -y build-essential cmake qtbase5-dev qttools5-dev
+  #       mkdir -p build_tmp
+
+  #   - name: Build UNetbootin
+  #     working-directory: ${{github.workspace}}/src/unetbootin/build_tmp
+  #     shell: bash
+  #     run: |
+  #       cmake .. -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DPLATFORM=${{matrix.platform}}
+  #       make
+
+  build_windows:
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -30,5 +50,5 @@ jobs:
       working-directory: ${{github.workspace}}/src/unetbootin/build_tmp
       shell: bash
       run: |
-        cmake .. -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DPLATFORM=${{matrix.platform}}
-        make
+        cmake .. -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+        nmake
