@@ -1,13 +1,8 @@
 #!/bin/bash
 
 rvern="$(./vcs-revno)"
-mingwb="$(ls /usr/ | grep mingw32 | grep -v amd64 | head --lines 1)"
-qtwind="$(pwd)/qt5-win"
 
-if [ ! -d release ]
-then
-mkdir release
-fi
+mkdir -p release
 
 if [ ! -f "sevnz.dll" ] || [ ! -f "sevnz.exe" ]
 then
@@ -21,10 +16,9 @@ mv 7z.dll sevnz.dll
 7z e -y sevenzip-extra.7z 7zS.sfx
 fi
 
-$qtwind/bin/lrelease unetbootin.pro
+lrelease unetbootin.pro
 ./qmake-windows
 make
 strip --strip-all release/unetbootin.exe
 mv release/unetbootin.exe release/unetbootin-windows-$rvern.exe
 upc-ucl --best --lzma release/unetbootin-windows-$rvern.exe
-
