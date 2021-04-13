@@ -1,6 +1,5 @@
 #!/bin/bash
 
-qtwind="$(pwd)/qt5-win"
 mingwb="i686-w64-mingw32"
 
 qmake -config release "DEFINES += STATICWINDOWS" "QMAKE_CC = $mingwb-gcc" "QMAKE_CXX = $mingwb-g++" "QMAKE_LINK = $mingwb-g++" "QMAKE_COPY_DIR = cp -r" "QMAKE_COPY = cp" "QMAKE_COPY_DIR = cp -r" "QMAKE_MOVE = mv" "QMAKE_DEL_FILE = rm" "QMAKE_CHK_DIR_EXISTS = test -d" "RESOURCES += unetbootin-windows.qrc unetbootin-sevnz.qrc" "QMAKE_LFLAGS += -Wl,-subsystem,windows" "RC_FILE += ubnembed.rc" "$@"

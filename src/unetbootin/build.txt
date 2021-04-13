@@ -17,9 +17,9 @@ Instructions
 2. Run either the "INSTALL" script, or the following commands:
 
 sed -i '/^RESOURCES/d' unetbootin.pro
-lupdate-qt4 unetbootin.pro
-lrelease-qt4 unetbootin.pro
-qmake-qt4 "DEFINES += NOSTATIC" "RESOURCES -= unetbootin.qrc"
+lupdate unetbootin.pro
+lrelease unetbootin.pro
+qmake "DEFINES += NOSTATIC" "RESOURCES -= unetbootin.qrc"
 make
 
 
@@ -76,7 +76,7 @@ make sub-src
 
 2) Set up cross-compile environment (instructions from http://gentoo-wiki.com/HOWTO_MinGW_and_Qt4 )
 
-If cross-compiling on Ubuntu, simply copy the file qmake-qt4.conf to /usr/share/qt4/mkspecs/win32-g++/qmake-qt4.conf
+If cross-compiling on Ubuntu, simply copy the file qmake.conf to /usr/share/qt4/mkspecs/win32-g++/qmake.conf
 
 3) Copy over your statically linked Windows qt4 install directory to /usr/$(ls /usr/ | grep mingw32 | head --lines 1)/Qt/
 
@@ -90,5 +90,5 @@ make
 
 To reduce file size, compress the executable using upx ( http://upx.sourceforge.net/ )
 
-./upx --lzma ./unetbootin.exe
+upc-ucl --lzma ./unetbootin.exe
 

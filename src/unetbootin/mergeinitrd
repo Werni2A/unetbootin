@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Merges pairs of initrd files into a single initrd.
 # Used for merging initrd.cgz and scsi.cgz in NTPasswd.

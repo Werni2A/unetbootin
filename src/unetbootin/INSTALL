@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # you will need "qmake" and "libqt4-dev" to build this
 # details at https://github.com/unetbootin/unetbootin/wiki/compile

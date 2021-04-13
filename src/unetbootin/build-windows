@@ -24,7 +24,7 @@ fi
 $qtwind/bin/lrelease unetbootin.pro
 ./qmake-windows
 make
-$mingwb-strip --strip-all release/unetbootin.exe
+strip --strip-all release/unetbootin.exe
 mv release/unetbootin.exe release/unetbootin-windows-$rvern.exe
-./upx --best --lzma release/unetbootin-windows-$rvern.exe
+upc-ucl --best --lzma release/unetbootin-windows-$rvern.exe
 

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 rvern="$(./vcs-revno)"
 
@@ -14,8 +14,8 @@ rm Makefile*
 rm release/*
 cp unetbootin.pro unetbootin-pro.bak
 sed -i '/^RESOURCES/d' unetbootin.pro
-lrelease-qt4 unetbootin.pro
-qmake-qt4 -config release "DEFINES += NOSTATIC" "RESOURCES -= unetbootin.qrc"
+lrelease unetbootin.pro
+qmake -config release "DEFINES += NOSTATIC" "RESOURCES -= unetbootin.qrc"
 make
 mv unetbootin-pro.bak unetbootin.pro
 strip --strip-all unetbootin

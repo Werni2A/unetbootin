@@ -9,4 +9,4 @@ lrelease unetbootin.pro
 make
 strip --strip-all unetbootin
 mv unetbootin release/unetbootin-linux-$rvern.bin
-./upx --best --lzma release/unetbootin-linux-$rvern.bin
+upx-ucl --best --lzma release/unetbootin-linux-$rvern.bin
