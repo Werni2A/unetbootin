@@ -84,7 +84,7 @@ void callexternappT::run()
 	}
 	else
 	{
-		ShExecInfo.lpVerb = LPCSTR("runas");
+		ShExecInfo.lpVerb = L"runas";
 	}
 	ShExecInfo.lpFile = LPWSTR(execFile.utf16());
 	ShExecInfo.lpParameters = LPWSTR(execParm.utf16());
