@@ -30,7 +30,7 @@ jobs:
       working-directory: ${{github.workspace}}/src/unetbootin/build_tmp
       shell: bash
       run: |
-        cmake .. -DCMAKE_GENERATOR_PLATFORM=x86 -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DPLATFORM=${{matrix.platform}}
+        cmake .. -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DPLATFORM=${{matrix.platform}}
         make
 
         strip --strip-all unetbootin
