@@ -49,6 +49,7 @@ jobs:
           install: git mingw-w64-x86_64-toolchain
       - name: CI-Build
         run: |
+          choco install cmake
           echo 'Running in MSYS2!'
           mkdir build_tmp
           cmake -G "MSYS Makefiles" .. -DCMAKE_BUILD_TYPE=$BUILD_TYPE
