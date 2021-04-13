@@ -1,5 +1,3 @@
-#!/bin/sh
-
-qtx11d="$(pwd)/qt5-x11"
+#!/bin/bash
 
 qmake -config release "DEFINES += STATICLINUX" "RESOURCES += unetbootin-linux.qrc" "$@"

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 qtwind="$(pwd)/qt5-win"
 mingwb="i686-w64-mingw32"
