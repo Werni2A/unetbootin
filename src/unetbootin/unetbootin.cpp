@@ -2965,7 +2965,8 @@ QString unetbootin::getlabel(QString voldrive)
 	#ifdef Q_OS_WIN32
 	voldrive.append("\\");
 	wchar_t vollabel[50];
-	GetVolumeInformation(LPWSTR(voldrive.utf16()), vollabel, 50, NULL, NULL, NULL, NULL, NULL);
+	QByteArray voldriveConv = voldrive.toLocal8bit();
+	GetVolumeInformation(voldriveConv.constData(), vollabel, 50, NULL, NULL, NULL, NULL, NULL);
 	QString vollabelS = QString::fromWCharArray(vollabel);
 	if (vollabelS.isEmpty())
 	{
@@ -3043,7 +3044,8 @@ QString unetbootin::getuuid(QString voldrive)
 	#ifdef Q_OS_WIN32
 	voldrive.append("\\");
     DWORD volserialnum = 0;
-	GetVolumeInformation(LPWSTR(voldrive.utf16()), NULL, NULL, &volserialnum, NULL, NULL, NULL, NULL);
+	QByteArray voldriveConv = voldrive.toLocal8bit();
+	GetVolumeInformation(voldriveConv.constData(), NULL, NULL, &volserialnum, NULL, NULL, NULL, NULL);
     if (!(volserialnum >= 1))
 	{
 		return "None";
