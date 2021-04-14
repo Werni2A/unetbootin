@@ -2968,8 +2968,9 @@ QString unetbootin::getlabel(QString voldrive)
 	#ifdef Q_OS_WIN32
 	voldrive.append("\\");
 	wchar_t vollabel[50];
+	QByteArray vollabelConv(50, '\0');
 	QByteArray voldriveConv = voldrive.toLocal8Bit();
-	GetVolumeInformation(voldriveConv.constData(), vollabel, 50, NULL, NULL, NULL, NULL, NULL);
+	GetVolumeInformation(voldriveConv.constData(), vollabelConv.data(), 50, NULL, NULL, NULL, NULL, NULL);
 	QString vollabelS = QString::fromWCharArray(vollabel);
 	if (vollabelS.isEmpty())
 	{
