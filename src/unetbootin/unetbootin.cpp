@@ -3253,8 +3253,7 @@ void unetbootin::configsysEdit()
 
 void unetbootin::bootiniEdit()
 {
-	QByteArray tmp = QDir::toNativeSeparators(QString("%1boot.ini").arg(targetDrive)).toLocal8Bit();
-	SetFileAttributesW(tmp.constData(), FILE_ATTRIBUTE_NORMAL);
+	SetFileAttributesW(QDir::toNativeSeparators(QString("%1boot.ini").arg(targetDrive)).utf16()), FILE_ATTRIBUTE_NORMAL);
 	QFile::copy(QDir::toNativeSeparators(QString("%1boot.ini").arg(targetDrive)), QString("%1boot.ini").arg(targetPath));
 	QFile::copy(QDir::toNativeSeparators(QString("%1bootnw.ini").arg(targetDrive)), QString("%1bootnw.txt").arg(targetPath));
 	QFile bootnwFile(QString("%1bootnw.txt").arg(targetPath));
