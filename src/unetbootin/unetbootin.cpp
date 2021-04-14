@@ -84,7 +84,8 @@ void callexternappT::run()
 	}
 	else
 	{
-		ShExecInfo.lpVerb = L"runas";
+		QByteArray runasConv = QString("runas").toLocal8Bit();
+		ShExecInfo.lpVerb = runasConv.constData();
 	}
 	QByteArray execFileConv = execFile.toLocal8Bit();
 	QByteArray execParmConv = execParm.toLocal8Bit();
