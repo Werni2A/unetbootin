@@ -602,7 +602,8 @@ QStringList unetbootin::listsanedrives()
 		{
 			if (QDir::toNativeSeparators(extdrivesList.at(i).path().toUpper()) != QDir::toNativeSeparators(QDir::rootPath().toUpper()) && !QDir::toNativeSeparators(extdrivesList.at(i).path().toUpper()).contains("A:") && !QDir::toNativeSeparators(extdrivesList.at(i).path().toUpper()).contains("B:"))
 			{
-				if (GetDriveType(LPWSTR(extdrivesList.at(i).path().toUpper().utf16())) == 2)
+				QByteArray tmp = extdrivesList.at(i).path().toUpper().toLocal8Bit();
+				if (GetDriveType(tmp.constData()) == 2)
 				{
 					fulldrivelist.append(QDir::toNativeSeparators(extdrivesList.at(i).path().toUpper()));
 				}
@@ -3252,7 +3253,8 @@ void unetbootin::configsysEdit()
 
 void unetbootin::bootiniEdit()
 {
-	SetFileAttributesW(LPWSTR(QDir::toNativeSeparators(QString("%1boot.ini").arg(targetDrive)).utf16()), FILE_ATTRIBUTE_NORMAL);
+	QByteArray tmp = QDir::toNativeSeparators(QString("%1boot.ini").arg(targetDrive)).toLocal8Bit();
+	SetFileAttributesW(tmp.constData(), FILE_ATTRIBUTE_NORMAL);
 	QFile::copy(QDir::toNativeSeparators(QString("%1boot.ini").arg(targetDrive)), QString("%1boot.ini").arg(targetPath));
 	QFile::copy(QDir::toNativeSeparators(QString("%1bootnw.ini").arg(targetDrive)), QString("%1bootnw.txt").arg(targetPath));
 	QFile bootnwFile(QString("%1bootnw.txt").arg(targetPath));

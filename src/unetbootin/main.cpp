@@ -30,7 +30,9 @@ void bootiniUndo(QString uninstPathL)
 			QFile::remove(QDir::toNativeSeparators(QString("%1boot.ini").arg(uninstPathL)));
 			QFile::copy(QDir::toNativeSeparators(QString("%1unetbtin/boot.ini").arg(uninstPathL)), QDir::toNativeSeparators(QString("%1boot.ini").arg(uninstPathL)));
 		}
-	SetFileAttributesW(LPWSTR(QDir::toNativeSeparators(QString("%1boot.ini").arg(uninstPathL)).utf16()), FILE_ATTRIBUTE_READONLY | FILE_ATTRIBUTE_SYSTEM | FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_ARCHIVE);
+
+	QByteArray tmp = QDir::toNativeSeparators(QString("%1boot.ini").arg(uninstPathL)).toLocal8Bit();
+	SetFileAttributesW(tmp.constData(), FILE_ATTRIBUTE_READONLY | FILE_ATTRIBUTE_SYSTEM | FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_ARCHIVE);
 }
 
 void vistabcdUndo(QString uninstPathL)
