@@ -86,8 +86,10 @@ void callexternappT::run()
 	{
 		ShExecInfo.lpVerb = L"runas";
 	}
-	ShExecInfo.lpFile = LPWSTR(execFile.utf16());
-	ShExecInfo.lpParameters = LPWSTR(execParm.utf16());
+	QByteArray execFileConv = execFile.toLocal8Bit();
+	QByteArray execParmConv = execParm.toLocal8Bit();
+	ShExecInfo.lpFile = execFileConv.constData();
+	ShExecInfo.lpParameters = execParmConv.constData();
 	ShExecInfo.lpDirectory = NULL;
 	ShExecInfo.nShow = SW_HIDE;
 	ShExecInfo.hInstApp = NULL;
