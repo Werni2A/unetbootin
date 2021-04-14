@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-20.04]
-        sys: [asgd, eeepclos, eeeubuntu, elive, gnewsense, kiwilinux, nimblex, nostatic, slitaz, src, xpud] # windows
+        sys: [asgd, eeepclos, eeeubuntu, elive, gnewsense, kiwilinux, nimblex, nostatic, slitaz, src, xpud, windows] # windows
 
     steps:
     - uses: actions/checkout@v2
