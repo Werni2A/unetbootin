@@ -1,0 +1,7 @@
+{
+  "name": "unetbootin",
+  "version-string": "0.1",
+  "dependencies": [
+    "qt5-base"
+  ]
+}

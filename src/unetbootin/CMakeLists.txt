@@ -18,6 +18,11 @@ cmake_minimum_required(VERSION 3.1.0)
 
 project(unetbootin)
 
+set(vcpkg_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../vcpkg)
+set(CMAKE_TOOLCHAIN_FILE ${vcpkg_SOURCE_DIR}/scripts/buildsystems/vcpkg.cmake)
+
+
+
 if(CMAKE_BUILD_TYPE STREQUAL "")
    message(STATUS "CMAKE_BUILD_TYPE not defined, 'Release' will be used")
    set(CMAKE_BUILD_TYPE "Release")

@@ -8,26 +8,49 @@ env:
   PLATFORM: EEEUBUNTU # FIXME: This is just a placeholder. CMake does not respect this kind of defines yet
 
 jobs:
-  build_ubuntu:
-    runs-on: ${{matrix.os}}
+  # build_ubuntu:
+  #   runs-on: ${{matrix.os}}
 
-    strategy:
-      matrix:
-        os: [ubuntu-20.04]
-        sys: [windows] # asgd, eeepclos, eeeubuntu, elive, gnewsense, kiwilinux, nimblex, nostatic, slitaz, src, xpud
+  #   strategy:
+  #     matrix:
+  #       os: [ubuntu-20.04]
+  #       sys: [windows] # asgd, eeepclos, eeeubuntu, elive, gnewsense, kiwilinux, nimblex, nostatic, slitaz, src, xpud
+
+  #   steps:
+  #   - uses: actions/checkout@v2
+
+  #   - name: Set Up Build Environment
+  #     working-directory: ${{github.workspace}}/src/unetbootin
+  #     shell: bash
+  #     run: |
+  #       sudo apt-get install -y build-essential cmake qtbase5-dev qttools5-dev upx-ucl gcc-mingw-w64 g++-mingw-w64-i686
+  #       mkdir -p build_tmp
+
+  #   - name: Build UNetbootin
+  #     working-directory: ${{github.workspace}}/src/unetbootin
+  #     shell: bash
+  #     run: |
+  #       ./build-${{matrix.sys}}
+
+
+build_windows:
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v2
 
     - name: Set Up Build Environment
       working-directory: ${{github.workspace}}/src/unetbootin
-      shell: bash
+      shell: powershell
       run: |
-        sudo apt-get install -y build-essential cmake qtbase5-dev qttools5-dev upx-ucl gcc-mingw-w64 g++-mingw-w64-i686
-        mkdir -p build_tmp
+        choco install cmake.install
+        choco install mingw
+        git clone https://github.com/microsoft/vcpkg.git
+        mkdir build_tmp
 
     - name: Build UNetbootin
-      working-directory: ${{github.workspace}}/src/unetbootin
-      shell: bash
+      working-directory: ${{github.workspace}}/src/unetbootin/build_tmp
+      shell: powershell
       run: |
-        ./build-${{matrix.sys}}
+        cmake -G "MinGW Makefiles" .. -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+        mingw-make
