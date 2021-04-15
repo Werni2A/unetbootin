@@ -33,24 +33,24 @@ jobs:
   #       ./build-${{matrix.sys}}
 
 
-build_windows:
-    runs-on: windows-latest
+  build_windows:
+      runs-on: windows-latest
 
-    steps:
-    - uses: actions/checkout@v2
+      steps:
+      - uses: actions/checkout@v2
 
-    - name: Set Up Build Environment
-      working-directory: ${{github.workspace}}/src/unetbootin
-      shell: powershell
-      run: |
-        choco install cmake.install
-        choco install mingw
-        git clone https://github.com/microsoft/vcpkg.git
-        mkdir build_tmp
+      - name: Set Up Build Environment
+        working-directory: ${{github.workspace}}/src/unetbootin
+        shell: powershell
+        run: |
+          choco install cmake.install
+          choco install mingw
+          git clone https://github.com/microsoft/vcpkg.git
+          mkdir build_tmp
 
-    - name: Build UNetbootin
-      working-directory: ${{github.workspace}}/src/unetbootin/build_tmp
-      shell: powershell
-      run: |
-        cmake -G "MinGW Makefiles" .. -DCMAKE_BUILD_TYPE=$BUILD_TYPE
-        mingw-make
+      - name: Build UNetbootin
+        working-directory: ${{github.workspace}}/src/unetbootin/build_tmp
+        shell: powershell
+        run: |
+          cmake -G "MinGW Makefiles" .. -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+          mingw-make
