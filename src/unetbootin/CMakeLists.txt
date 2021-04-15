@@ -14,7 +14,7 @@
 # more details.
 
 
-set(vcpkg_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../vcpkg)
+set(vcpkg_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/vcpkg)
 set(CMAKE_TOOLCHAIN_FILE ${vcpkg_SOURCE_DIR}/scripts/buildsystems/vcpkg.cmake)
 
 # set(VCPKG_TARGET_ARCHITECTURE x64)
