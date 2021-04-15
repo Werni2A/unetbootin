@@ -46,6 +46,7 @@ jobs:
           choco install cmake.install
           choco install mingw
           git clone https://github.com/microsoft/vcpkg.git
+          ./vcpkg/bootstrap-vcpkg.bat
           mkdir build_tmp
 
       - name: Build UNetbootin
