@@ -43,11 +43,12 @@ jobs:
         working-directory: ${{github.workspace}}/src/unetbootin
         shell: powershell
         run: |
-          choco install cmake.install
-          choco install mingw
+          # choco install cmake.install
+          # choco install mingw
           git clone https://github.com/microsoft/vcpkg.git
           ./vcpkg/bootstrap-vcpkg.bat
           mkdir build_tmp
+          ./vcpkg/vcpkg list --triplet x64-windows
 
       - name: Build UNetbootin
         working-directory: ${{github.workspace}}/src/unetbootin/build_tmp

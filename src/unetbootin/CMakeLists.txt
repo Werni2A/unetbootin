@@ -14,13 +14,19 @@
 # more details.
 
 
-cmake_minimum_required(VERSION 3.1.0)
-
-project(unetbootin)
-
 set(vcpkg_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../vcpkg)
 set(CMAKE_TOOLCHAIN_FILE ${vcpkg_SOURCE_DIR}/scripts/buildsystems/vcpkg.cmake)
 
+# set(VCPKG_TARGET_ARCHITECTURE x64)
+# set(VCPKG_CRT_LINKAGE dynamic)
+# set(VCPKG_CRT_LINKAGE static)
+# set(VCPKG_LIBRARY_LINKAGE dynamic)
+# set(VCPKG_LIBRARY_LINKAGE static)
+# set(VCPKG_CMAKE_SYSTEM_NAME Linux)
+
+cmake_minimum_required(VERSION 3.1.0)
+
+project(unetbootin)
 
 
 if(CMAKE_BUILD_TYPE STREQUAL "")
